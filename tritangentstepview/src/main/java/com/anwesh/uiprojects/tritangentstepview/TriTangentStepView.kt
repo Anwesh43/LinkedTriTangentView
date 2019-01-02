@@ -21,6 +21,8 @@ val strokeFactor : Int = 90
 val sizeFactor : Int = 3
 val foreColor : Int = Color.parseColor("#283593")
 val backColor : Int = Color.parseColor("#BDBDBD")
+val ROTATION_ANGLE : Float = 90f
+val DELAY : Long = 25
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -70,7 +72,7 @@ fun Canvas.drawTTSNode(i : Int, scale : Float, paint : Paint) {
     paint.color = foreColor
     save()
     translate(gap * (i + 1), h/2)
-    rotate(180f * sc2)
+    rotate(ROTATION_ANGLE * sc2)
     drawTriangle(size, paint)
     drawTangent(size, sc1, paint)
     restore()
@@ -120,7 +122,7 @@ class TriTangentStepView(ctx : Context) : View(ctx) {
             if (animated) {
                 cb()
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(DELAY)
                     view.invalidate()
                 } catch(ex : Exception) {
 
