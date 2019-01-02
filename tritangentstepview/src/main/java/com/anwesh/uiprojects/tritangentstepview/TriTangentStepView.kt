@@ -229,4 +229,12 @@ class TriTangentStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : TriTangentStepView {
+            val view : TriTangentStepView = TriTangentStepView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
