@@ -48,11 +48,12 @@ fun Canvas.drawTriangle(size : Float, paint : Paint) {
 
 fun Canvas.drawTangent(size : Float, scale : Float, paint : Paint) {
     val deg : Float = 360f / lines
+    val tSize : Float = size/3
     for (j in 0..(lines - 1)) {
         val sc : Float = scale.divideScale(j, lines)
         save()
         rotate(deg * j)
-        drawLine(-size * sc, -size, size * sc, -size, paint)
+        drawLine(-tSize * sc, -size, tSize * sc, -size, paint)
         restore()
     }
 }
@@ -71,7 +72,7 @@ fun Canvas.drawTTSNode(i : Int, scale : Float, paint : Paint) {
     translate(gap * (i + 1), h/2)
     rotate(180f * sc2)
     drawTriangle(size, paint)
-    drawTangent(size, scale, paint)
+    drawTangent(size, sc1, paint)
     restore()
 }
 
@@ -234,7 +235,7 @@ class TriTangentStepView(ctx : Context) : View(ctx) {
         fun create(activity : Activity) : TriTangentStepView {
             val view : TriTangentStepView = TriTangentStepView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
